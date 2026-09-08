@@ -2,6 +2,8 @@
 # total 60000 32x32 iamges, 6000 images per class
 # 50000 training images, 10000 test iamges
 
+print("starting executing!")
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
