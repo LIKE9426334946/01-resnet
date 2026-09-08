@@ -15,7 +15,7 @@ from torchvision.datasets import CIFAR10
 from model import resnet18
 
 torch.manual_seed(23)
-device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"使用设备：{device}")
 
 transforms = v2.Compose(
@@ -39,8 +39,8 @@ for epoch in range(num_epochs):
 
     for images, labels in train_dataloader:
 
-        images=images.to(device)
-        labels=labels.to(device)
+        images = images.to(device)
+        labels = labels.to(device)
 
         outputs = model(images)
         loss = criterion(outputs, labels)
