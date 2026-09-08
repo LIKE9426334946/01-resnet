@@ -15,6 +15,8 @@ from torchvision.datasets import CIFAR10
 from model import resnet18
 
 torch.manual_seed(23)
+device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"使用设备：{device}")
 
 transforms = v2.Compose(
     [
@@ -26,7 +28,7 @@ transforms = v2.Compose(
 training_data = CIFAR10(root="data", train=True, transform=transforms, download=True)
 train_dataloader = DataLoader(training_data, batch_size=32, shuffle=True)
 
-model = resnet18(num_classes=10)
+model = resnet18(num_classes=10).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
 num_epochs = 5
@@ -36,6 +38,10 @@ for epoch in range(num_epochs):
     total_loss = 0.0
 
     for images, labels in train_dataloader:
+
+        images=images.to(device)
+        labels=images.to(device)
+
         outputs = model(images)
         loss = criterion(outputs, labels)
 
