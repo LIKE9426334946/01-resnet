@@ -40,7 +40,7 @@ for epoch in range(num_epochs):
     for images, labels in train_dataloader:
 
         images=images.to(device)
-        labels=images.to(device)
+        labels=labels.to(device)
 
         outputs = model(images)
         loss = criterion(outputs, labels)
