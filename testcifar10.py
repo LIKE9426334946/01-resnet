@@ -14,25 +14,35 @@ from model import resnet18
 
 torch.manual_seed(23)
 
-transforms = v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])
+transforms = v2.Compose(
+    [
+        v2.ToImage(),
+        v2.ToDtype(torch.float32, scale=True),
+    ]
+)
 
 training_data = CIFAR10(root="data", train=True, transform=transforms, download=True)
-
 train_dataloader = DataLoader(training_data, batch_size=32, shuffle=True)
 
 model = resnet18(num_classes=10)
-
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
+num_epochs = 5
 
-images, labels = next(iter(train_dataloader))
+for epoch in range(num_epochs):
+    model.train()
+    total_loss = 0.0
 
-outputs = model(images)
+    for images, labels in train_dataloader:
+        outputs = model(images)
+        loss = criterion(outputs, labels)
 
-print(outputs.shape)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
 
-loss = criterion(outputs, labels)
-optimizer.zero_grad()
-loss.backward()
-optimizer.step()
-print(loss.item())
+        total_loss += loss.item()
+
+    average_loss = total_loss / len(train_dataloader)
+
+    print(f"Epoch [{epoch+1}/{num_epochs}]," f"Loss:{average_loss:.4f}")
