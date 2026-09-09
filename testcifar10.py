@@ -31,7 +31,7 @@ train_dataloader = DataLoader(training_data, batch_size=32, shuffle=True)
 model = resnet18(num_classes=10).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
-num_epochs = 5
+num_epochs = 100
 
 for epoch in range(num_epochs):
     model.train()
