@@ -1,0 +1,35 @@
+# =========================
+# Dataset
+# =========================
+
+data:
+  root: "./data"
+  image_size: 128
+  download: true
+
+# =========================
+# Training
+# =========================
+
+training:
+  batch_size: 16
+  epochs: 5
+  learning_rate: 0.001
+  num_workers: 2
+  seed: 23
+
+# =========================
+# Model
+# =========================
+
+model:
+  in_channels: 3
+  out_channels: 1
+  base_channels: 16
+
+# =========================
+# Metrics
+# =========================
+
+metrics:
+  threshold: 0.5
