@@ -103,7 +103,7 @@ def main():
         momentum=0.9,
     )
 
-    num_epochs = 5
+    num_epochs = 60
 
     for epoch in range(num_epochs):
         model.train()
