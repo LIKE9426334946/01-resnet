@@ -12,6 +12,7 @@
 # print(f"{output=}")
 
 import math
+import os
 
 import numpy as np
 
@@ -22,3 +23,4 @@ b = -(math.log(a))
 
 print(a)
 print(b)
+print(os.name)
