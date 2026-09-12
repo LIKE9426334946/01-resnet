@@ -1,3 +1,4 @@
 __pycache__/
-/loadvenv.txt
 data/
+demo.py
+# 以上为忽略文件

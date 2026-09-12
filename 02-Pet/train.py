@@ -83,7 +83,9 @@ def train_one_epoch(
 
         total_loss += loss.item()
 
-    average_loss = total_loss / len(dataloader)
+    average_loss = total_loss / len(
+        dataloader
+    )  # 每次计算的loss是一批图片的损失，最后要平均一下
 
     return average_loss
 
@@ -216,7 +218,7 @@ def main():
     # =========================
 
     with open(
-        "E:\\project\\week1\\02-Pet\\config.yaml",
+        "./02-Pet/config.yaml",
         "r",
         encoding="utf-8",
     ) as f:
