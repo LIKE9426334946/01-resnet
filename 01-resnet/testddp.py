@@ -22,11 +22,11 @@ from model import resnet18
 def main():
     # torchrun会为每个进程设置LOCAL_RANK
     local_rank = int(os.environ["LOCAL_RANK"])
-    print(f"{local_rank=}")
+    print(f"{local_rank=}") # 0 1 会打印两次
 
     # Linux使用NCCL，Windows使用Gloo
     backend = "gloo" if os.name == "nt" else "nccl"
-    print(f"{backend=}")
+    print(f"{backend=}") # nccl 会打印两次
 
     # 初始化进程组
     dist.init_process_group(backend=backend)
@@ -34,12 +34,12 @@ def main():
     # 当前进程绑定到对应GPU
     torch.cuda.set_device(local_rank)
     device = torch.device(f"cuda:{local_rank}")
-    print(f"{device=}")
+    print(f"{device=}") # index=0,index=1 会打印两次
 
     rank = dist.get_rank()
-    print(f"{rank=}")
+    print(f"{rank=}") # 0 1 会打印两次
     world_size = dist.get_world_size()
-    print(f"{world_size=}")
+    print(f"{world_size=}") # 2 2 会打印两次
 
     torch.manual_seed(23)
 
