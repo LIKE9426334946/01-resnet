@@ -19,7 +19,7 @@ import numpy as np
 e = math.e
 
 a = 1 / (1 + math.pow(e,-0.7195))
-b = -(math.log(0.9))
+b = -(math.log(0.99))
 
 print(a)
 print(b)

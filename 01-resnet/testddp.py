@@ -37,6 +37,7 @@ def main():
     world_size = dist.get_world_size()
 
     torch.manual_seed(23)
+    breakpoint()
 
     # 只让主进程输出一次
     if rank == 0:
